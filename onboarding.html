@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launchp4d | Complete Your Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F4F2EE;
+  --sidebar: #1C1C1A;
+  --accent: #B09E91;
+  --accent-dark: #8a7b70;
+  --text: #1C1C1A;
+  --muted: #7a7570;
+  --card: #FFFFFF;
+  --border: #E2DDD9;
+  --success: #5a8a6a;
+  --error: #c0564a;
+  --tag-bg: #EDE9E5;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--sidebar);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 24px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+.nav-section { flex: 1; }
+
+.nav-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 12px;
+  padding-left: 12px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  color: #aaa;
+  font-size: 0.88rem;
+  transition: all 0.18s;
+  user-select: none;
+  position: relative;
+}
+
+.nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+.nav-item.active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+
+.nav-item .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
+
+.nav-item .nav-check {
+  margin-left: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.nav-item .nav-check.done {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid #2e2e2b;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.user-info { flex: 1; overflow: hidden; }
+.user-name { font-size: 0.83rem; color: #ddd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-status { font-size: 0.68rem; color: #666; }
+
+/* ── MAIN ── */
+.main {
+  padding: 44px 48px;
+  max-width: 820px;
+}
+
+/* HEADER */
+.page-header { margin-bottom: 36px; }
+
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.page-subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+.progress-wrap { display: flex; align-items: center; gap: 14px; }
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.skill-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+
+.skill-card{
+  padding:16px;
+  border:1.5px solid var(--border);
+  border-radius:14px;
+  background:var(--bg);
+  cursor:pointer;
+  transition:.2s;
+  text-align:center;
+  font-size:.88rem;
+  font-weight:600;
+}
+
+.skill-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-2px);
+}
+
+.skill-card.selected{
+  background:rgba(176,158,145,.12);
+  border-color:var(--accent);
+  color:var(--accent-dark);
+}
+
+.skill-icon{
+  display:block;
+  font-size:1.5rem;
+  margin-bottom:8px;
+}
+
+.selected-count{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:.8rem;
+}
+.progress-pct {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 44px;
+  text-align: right;
+}
+
+/* SECTION */
+.section { display: none; }
+.section.active { display: block; animation: fadeUp 0.28s ease; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.card-desc { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+
+/* FORM */
+.field { margin-bottom: 16px; }
+
+.field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  appearance: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(176,158,145,0.15);
+  background: #fff;
+}
+
+.field textarea { min-height: 110px; resize: vertical; }
+
+.field .char-count {
+  text-align: right;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.field .char-count.warn { color: var(--error); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s;
+  user-select: none;
+}
+
+.btn-primary {
+  background: var(--sidebar);
+  color: #fff;
+}
+
+.btn-primary:hover { background: #333; transform: translateY(-1px); }
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 12px;
+}
+
+.btn-ghost:hover { color: var(--error); }
+
+.btn-sm { padding: 8px 14px; font-size: 0.8rem; border-radius: 8px; }
+
+.btn-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* SAVING INDICATOR */
+.saving-indicator {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.saving-indicator.show { display: flex; }
+
+.saving-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* TAGS */
+.tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--tag-bg);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--text);
+  cursor: default;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+
+/* PAYMENT OPTIONS */
+.payment-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.payment-option:hover { border-color: var(--accent); }
+
+.payment-option.selected {
+  border-color: var(--accent);
+  background: rgba(176,158,145,0.08);
+}
+
+.payment-label { font-weight: 600; font-size: 0.88rem; margin-bottom: 2px; }
+.payment-desc { font-size: 0.78rem; color: var(--muted); }
+.payment-price { font-weight: 700; font-size: 1rem; color: var(--text); flex-shrink: 0; margin-left: 16px; }
+
+/* RADIO */
+.radio-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.15s;
+}
+.radio-label:hover { border-color: var(--accent); }
+.radio-label input[type=radio] { accent-color: var(--accent); }
+
+.tag-remove {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.tag-remove:hover { color: var(--error); }
+
+.skill-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.skill-input-row .field { flex: 1; margin: 0; }
+
+/* EXPERIENCE ENTRIES */
+.entry-card {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 14px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.entry-card:hover { border-color: var(--accent); }
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.entry-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.entry-subtitle { font-size: 0.82rem; color: var(--muted); }
+
+.add-entry-btn {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.add-entry-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(176,158,145,0.04); }
+
+/* DOCUMENT CHECKLIST */
+.doc-checklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.doc-check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  transition: all 0.2s;
+}
+
+.doc-check-item.done {
+  border-color: var(--success);
+  background: rgba(90,138,106,0.06);
+  color: var(--success);
+}
+
+.doc-check-item.missing {
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.doc-check-icon {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* REVIEW */
+.review-section { margin-bottom: 24px; }
+.review-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.review-field {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.review-field-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 3px; }
+.review-field-value { font-size: 0.88rem; font-weight: 500; }
+
+.checklist { list-style: none; }
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+}
+
+.checklist li.done { background: rgba(90,138,106,0.08); color: var(--success); }
+.checklist li.missing { background: rgba(192,86,74,0.06); color: var(--error); }
+
+.checklist li .check-icon { font-size: 1rem; }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--sidebar);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  z-index: 9999;
+  max-width: 320px;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success .toast-icon::before { content: '✓'; color: #7ec89a; }
+.toast.error .toast-icon::before { content: '✕'; color: #e88a82; }
+.toast.info .toast-icon::before { content: 'ℹ'; color: var(--accent); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  padding: 20px;
+}
+
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  transform: translateY(20px);
+  transition: transform 0.3s;
+}
+
+.modal-overlay.open .modal { transform: translateY(0); }
+
+.modal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-close {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 1.1rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.modal-close:hover { background: var(--border); }
+
+/* EMPTY STATE */
+.empty-state {
+  text-align: center;
+  padding: 32px;
+  color: var(--muted);
+}
+
+.empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.empty-text { font-size: 0.88rem; }
+
+/* WORD COUNT */
+.word-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  background: var(--tag-bg);
+  color: var(--muted);
+  margin-left: 6px;
+}
+
+/* FILE PREVIEW ROW */
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 8px;
+  font-size: 0.85rem;
+}
+
+.file-item .file-icon { font-size: 1.2rem; }
+.file-item .file-name { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-item .file-size { color: var(--muted); font-size: 0.75rem; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="logo"><span class="logo-dot"></span>Launchp4d</div>
+
+  <div class="nav-section">
+    <div class="nav-label">Profile Steps</div>
+
+    <div class="nav-item active" data-section="profile" onclick="goTo('profile',this)">
+      <span class="nav-icon">👤</span> My Profile
+      <span class="nav-check" id="check-profile">✓</span>
+    </div>
+    <div class="nav-item" data-section="experience" onclick="goTo('experience',this)">
+      <span class="nav-icon">💼</span> Work Experience
+      <span class="nav-check" id="check-experience">✓</span>
+    </div>
+    <div class="nav-item" data-section="education" onclick="goTo('education',this)">
+      <span class="nav-icon">🎓</span> Education
+      <span class="nav-check" id="check-education">✓</span>
+    </div>
+    <div class="nav-item" data-section="skills" onclick="goTo('skills',this)">
+      <span class="nav-icon">⚡</span> Skills
+      <span class="nav-check" id="check-skills">✓</span>
+    </div>
+    <div class="nav-item" data-section="documents" onclick="goTo('documents',this)">
+      <span class="nav-icon">📄</span> Documents
+      <span class="nav-check" id="check-documents">✓</span>
+    </div>
+    <div class="nav-item" data-section="review" onclick="goTo('review',this)">
+      <span class="nav-icon">🚀</span> Review & Submit
+      <span class="nav-check" id="check-review">✓</span>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="user-avatar" id="userAvatar">?</div>
+      <div class="user-info">
+        <div class="user-name" id="userName">Loading…</div>
+        <div class="user-status" id="userStatus">Setting up profile</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+  <div class="page-header">
+    <h1 class="page-title">Complete Your Profile</h1>
+    <p class="page-subtitle">Fill in each section to unlock opportunities on the platform</p>
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-pct" id="progressPct">0%</div>
+    </div>
+  </div>
+
+  <!-- ───── PROFILE ───── -->
+  <div id="profile" class="section active">
+    <div class="card">
+      <div class="card-title">Professional Information</div>
+      <div class="card-desc">Your public-facing identity on Launchp4d</div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Full Name *</label>
+          <input id="fullName" placeholder="e.g. Thabo Mokoena" oninput="autosave()">
+        </div>
+        <div class="field">
+          <label>Job Title *</label>
+          <input id="jobTitle" placeholder="e.g. Senior Developer" oninput="autosave()">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Email Address *</label>
+          <input id="email" type="email" placeholder="you@example.com" oninput="autosave()">
+        </div>
+        <div class="field">
+          <label>Mobile Number</label>
+          <input id="phone" type="tel" placeholder="+27 82 000 0000" oninput="autosave()">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Province</label>
+          <select id="province" onchange="autosave()">
+            <option value="">Select province…</option>
+            <option>Gauteng</option>
+            <option>Western Cape</option>
+            <option>KwaZulu-Natal</option>
+            <option>Eastern Cape</option>
+            <option>Limpopo</option>
+            <option>Mpumalanga</option>
+            <option>North West</option>
+            <option>Northern Cape</option>
+            <option>Free State</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Experience Level</label>
+          <select id="experienceLevel" onchange="autosave()">
+            <option value="">Select level…</option>
+            <option>Junior (0–2 years)</option>
+            <option>Mid-Level (3–5 years)</option>
+            <option>Senior (6–9 years)</option>
+            <option>Lead (10+ years)</option>
+            <option>Executive</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Professional Summary <span id="wordBadge" class="word-badge">0 / 400 words</span></label>
+        <textarea id="summary" placeholder="Describe your experience, strengths, and career goals…" oninput="updateWordCount()"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveSection('profile')">Save & Continue →</button>
+        <div class="saving-indicator" id="saving-profile">
+          <span class="saving-dot"></span> Saving…
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── EXPERIENCE ───── -->
+  <div id="experience" class="section">
+    <div class="card">
+      <div class="card-title">Work Experience</div>
+      <div class="card-desc">Add your employment history — most recent first</div>
+
+      <div id="experienceList"></div>
+
+      <button class="add-entry-btn" onclick="openExpModal()">
+        <span>＋</span> Add Work Experience
+      </button>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveSection('experience')">Save & Continue →</button>
+        <button class="btn btn-outline" onclick="goTo('profile', document.querySelector('[data-section=profile]'))">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── EDUCATION ───── -->
+  <div id="education" class="section">
+    <div class="card">
+      <div class="card-title">Education</div>
+      <div class="card-desc">Your academic background and qualifications</div>
+
+      <div id="educationList"></div>
+
+      <button class="add-entry-btn" onclick="openEduModal()">
+        <span>＋</span> Add Education
+      </button>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveSection('education')">Save & Continue →</button>
+        <button class="btn btn-outline" onclick="goTo('experience', document.querySelector('[data-section=experience]'))">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── SKILLS ───── -->
+<div id="skills" class="section">
+  <div class="card">
+
+    <div class="card-title">Select Your Skills</div>
+
+    <div class="card-desc">
+      Choose up to 9 skills that best represent your expertise.
+    </div>
+
+    <div id="skillGrid" class="skill-grid">
+
+      <div class="skill-card" onclick="toggleSkill('Leadership',this)">
+        <span class="skill-icon">👑</span>
+        Leadership
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Communication',this)">
+        <span class="skill-icon">💬</span>
+        Communication
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Project Management',this)">
+        <span class="skill-icon">📋</span>
+        Project Management
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Sales',this)">
+        <span class="skill-icon">📈</span>
+        Sales
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Marketing',this)">
+        <span class="skill-icon">📢</span>
+        Marketing
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Customer Service',this)">
+        <span class="skill-icon">🤝</span>
+        Customer Service
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Data Analysis',this)">
+        <span class="skill-icon">📊</span>
+        Data Analysis
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Problem Solving',this)">
+        <span class="skill-icon">🧠</span>
+        Problem Solving
+      </div>
+
+      <div class="skill-card" onclick="toggleSkill('Teamwork',this)">
+        <span class="skill-icon">🚀</span>
+        Teamwork
+      </div>
+
+    </div>
+
+    <div class="selected-count">
+      Selected Skills:
+      <strong id="skillCount">0</strong>/9
+    </div>
+
+    <div id="skillsContainer" class="tags-wrap"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary"
+        onclick="saveSection('skills')">
+        Save & Continue →
+      </button>
+
+      <button class="btn btn-outline"
+        onclick="goTo('education', document.querySelector('[data-section=education]'))">
+        ← Back
+      </button>
+    </div>
+
+  </div>
+</div> 
+  <!-- ───── DOCUMENTS ───── -->
+  <div id="documents" class="section">
+
+    <!-- Checklist card -->
+    <div class="card">
+      <div class="card-title">Document Checklist</div>
+      <div class="card-desc">Status of your required documents</div>
+      <div class="doc-checklist">
+        <div class="doc-check-item missing" id="chkCV">
+          <span class="doc-check-icon">○</span> CV / Resume
+        </div>
+        <div class="doc-check-item missing" id="chkPhoto">
+          <span class="doc-check-icon">○</span> Profile Photo
+        </div>
+        <div class="doc-check-item missing" id="chkID">
+          <span class="doc-check-icon">○</span> Certified ID
+        </div>
+        <div class="doc-check-item missing" id="chkQuals">
+          <span class="doc-check-icon">○</span> Qualifications
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload card -->
+    <div class="card">
+      <div class="card-title">Upload Documents</div>
+      <div class="card-desc">Accepted formats: PDF, Word, JPG, PNG (max 10 MB each)</div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Profile Photo (JPG / PNG)</label>
+          <input id="photoUpload" type="file" accept=".jpg,.jpeg,.png" onchange="handleDocUpload('photo', this)">
+          <div id="photoPreview"></div>
+        </div>
+        <div class="field">
+          <label>CV / Resume (PDF or Word)</label>
+          <input id="cvUpload" type="file" accept=".pdf,.doc,.docx" onchange="handleDocUpload('cv', this)">
+          <div id="cvPreview"></div>
+        </div>
+        <div class="field">
+          <label>Certified ID</label>
+          <input id="idUpload" type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleDocUpload('id', this)">
+          <div id="idPreview"></div>
+        </div>
+        <div class="field">
+          <label>Qualifications (multiple allowed)</label>
+          <input id="qualificationUpload" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple onchange="handleDocUpload('quals', this)">
+          <div id="qualsPreview"></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-accent" onclick="uploadDocuments()">📤 Save Documents</button>
+        <div class="saving-indicator" id="saving-documents">
+          <span class="saving-dot"></span> Uploading…
+        </div>
+      </div>
+    </div>
+
+    <!-- Criminal declaration card -->
+    <div class="card">
+      <div class="card-title">Criminal Record Declaration</div>
+      <div class="card-desc">This declaration is required for all applicants</div>
+
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="criminalRecord" value="none">
+          I declare that I have <strong>&nbsp;no&nbsp;</strong> criminal record
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="criminalRecord" value="yes">
+          I declare that I <strong>&nbsp;have&nbsp;</strong> a criminal record
+        </label>
+      </div>
+
+      <div class="field" style="margin-top:14px">
+        <label>Details (if applicable)</label>
+        <textarea id="criminalRecordDetails" rows="4" placeholder="Provide details if applicable…"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveCriminalDeclaration()">Save Declaration</button>
+      </div>
+    </div>
+
+    <!-- Payment card -->
+    <div class="card">
+      <div class="card-title">Verification & Listing Fee</div>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">A once-off fee to appear in the Launchp4d Talent Vault.</p>
+
+      <div class="payment-option" id="payFull" onclick="selectPayment('full')">
+        <div>
+          <div class="payment-label">Standard Listing</div>
+          <div class="payment-desc">Full access to the Talent Vault</div>
+        </div>
+        <div class="payment-price">R99</div>
+      </div>
+
+      <div class="payment-option" id="payGrad" onclick="selectPayment('grad')">
+        <div>
+          <div class="payment-label">Graduate Exemption</div>
+          <div class="payment-desc">For recent graduates — apply for free listing</div>
+        </div>
+        <div class="payment-price">Free</div>
+      </div>
+
+      <div class="payment-option" id="payUnemp" onclick="selectPayment('unemp')">
+        <div>
+          <div class="payment-label">Unemployed Exemption</div>
+          <div class="payment-desc">For unemployed talent — apply for free listing</div>
+        </div>
+        <div class="payment-price">Free</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-accent" onclick="processPayment()">Proceed with Selected Option</button>
+      </div>
+    </div>
+
+    <!-- Nav buttons -->
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="saveSection('documents')">Save & Continue →</button>
+      <button class="btn btn-outline" onclick="goTo('skills', document.querySelector('[data-section=skills]'))">← Back</button>
+    </div>
+
+  </div><!-- end #documents section -->
+
+  <!-- ───── REVIEW ───── -->
+  <div id="review" class="section">
+    <div class="card">
+      <div class="card-title">Review & Submit</div>
+      <div class="card-desc">Check your details before sending your profile for review</div>
+
+      <div id="reviewContent"></div>
+
+      <div class="btn-row">
+        <button class="btn btn-accent" id="submitBtn" onclick="submitProfile()">🚀 Submit for Review</button>
+        <button class="btn btn-outline" onclick="goTo('documents', document.querySelector('[data-section=documents]'))">← Back</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ─── EXPERIENCE MODAL ─── -->
+<div class="modal-overlay" id="expModal">
+  <div class="modal">
+    <div class="modal-title">
+      Work Experience
+      <span class="modal-close" onclick="closeModal('expModal')">✕</span>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Job Title *</label>
+        <input id="expTitle" placeholder="e.g. Software Engineer">
+      </div>
+      <div class="field">
+        <label>Company *</label>
+        <input id="expCompany" placeholder="e.g. Accenture">
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Start Date</label>
+        <input id="expStart" type="month">
+      </div>
+      <div class="field">
+        <label>End Date (leave blank if current)</label>
+        <input id="expEnd" type="month">
+      </div>
+    </div>
+    <div class="field">
+      <label>Highlights / Responsibilities</label>
+      <textarea id="expDesc" placeholder="Key achievements and responsibilities…"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="saveExp()">Save Experience</button>
+      <button class="btn btn-outline" onclick="closeModal('expModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── EDUCATION MODAL ─── -->
+<div class="modal-overlay" id="eduModal">
+  <div class="modal">
+    <div class="modal-title">
+      Education
+      <span class="modal-close" onclick="closeModal('eduModal')">✕</span>
+    </div>
+    <div class="field">
+      <label>Institution *</label>
+      <input id="eduInstitution" placeholder="e.g. University of Cape Town">
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Qualification *</label>
+        <input id="eduQualification" placeholder="e.g. BSc Computer Science">
+      </div>
+      <div class="field">
+        <label>Year Completed</label>
+        <input id="eduYear" type="number" placeholder="e.g. 2019" min="1970" max="2030">
+      </div>
+    </div>
+    <div class="field">
+      <label>Highlights / Activities</label>
+      <textarea id="eduDesc" placeholder="Awards, distinctions, activities…"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="saveEdu()">Save Education</button>
+      <button class="btn btn-outline" onclick="closeModal('eduModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon"></span>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- ═══ FIREBASE + LOGIC ═══ -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAyk_sM016AC-4ZTSI7rdi0J3mAJhwrZBk",
+  authDomain: "launchp4d.firebaseapp.com",
+  projectId: "launchp4d",
+  storageBucket: "launchp4d.firebasestorage.app",
+  messagingSenderId: "1063626171917",
+  appId: "1:1063626171917:web:55056d732b7bd45e819744"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+// ── STATE ──
+let uid = null;
+let profile = {
+  skills: [],
+  experience: [],
+  education: [],
+  completedSections: {}
+};
+
+// documentsData mirrors the 'documents' Firestore collection for this user
+let documentsData = {};
+
+// pendingDocs holds File objects selected but not yet uploaded
+const pendingDocs = {};
+
+let selectedPayment = null;
+let editExpIndex = null;
+let editEduIndex = null;
+let autosaveTimer = null;
+
+// ── AUTH ──
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = 'auth.html';
+    return;
+  }
+  uid = user.uid;
+
+  document.getElementById('userName').textContent =
+    user.displayName || user.email?.split('@')[0] || 'Talent';
+  document.getElementById('userStatus').textContent = user.email || '';
+  document.getElementById('userAvatar').textContent =
+    (user.displayName || user.email || '?').charAt(0).toUpperCase();
+
+  // Load profile
+  try {
+    const snap = await getDoc(doc(db, 'talent_profiles', uid));
+    if (snap.exists()) {
+      Object.assign(profile, snap.data());
+    }
+  } catch(e) { console.warn('Could not load profile:', e); }
+
+  // Load documents separately
+  try {
+    const dSnap = await getDoc(doc(db, 'documents', uid));
+    if (dSnap.exists()) documentsData = dSnap.data();
+  } catch(e) { console.warn('Could not load documents:', e); }
+
+  populateForm();
+  updateProgress();
+  renderAllChecks();
+  updateDocChecklist();
+
+  showToast('Profile loaded', 'success');
+});
+
+// ── POPULATE FORM FROM SAVED DATA ──
+function populateForm() {
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val != null) el.value = val; };
+  set('fullName',        profile.fullName);
+  set('jobTitle',        profile.jobTitle);
+  set('email',           profile.email);
+  set('phone',           profile.mobile);
+  set('province',        profile.province);
+  set('experienceLevel', profile.experienceLevel);
+  set('summary',         profile.summary);
+  updateWordCount();
+  renderSkills();
+  renderExperience();
+  renderEducation();
+  // Restore criminal declaration
+  if (profile.criminalRecord) {
+    const radio = document.querySelector(`input[name="criminalRecord"][value="${profile.criminalRecord}"]`);
+    if (radio) radio.checked = true;
+  }
+  if (profile.criminalRecordDetails) {
+    const el = document.getElementById('criminalRecordDetails');
+    if (el) el.value = profile.criminalRecordDetails;
+  }
+}
+
+// ── NAVIGATION ──
+window.goTo = function(section, navEl) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(section).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (navEl) navEl.classList.add('active');
+  if (section === 'review') buildReview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// ── WORD COUNT ──
+window.updateWordCount = function() {
+  const text  = document.getElementById('summary').value.trim();
+  const words = text ? text.split(/\s+/).length : 0;
+  const badge = document.getElementById('wordBadge');
+  badge.textContent = `${words} / 400 words`;
+  badge.style.color      = words > 400 ? 'var(--error)' : '';
+  badge.style.background = words > 400 ? 'rgba(192,86,74,0.1)' : '';
+};
+
+// ── AUTOSAVE ──
+window.autosave = function() {
+  clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(() => saveToFirestore(true), 1200);
+};
+
+// ── SKILLS ──
+window.toggleSkill = function(skill, card){
+
+  if(!profile.skills)
+    profile.skills = [];
+
+  const index = profile.skills.indexOf(skill);
+
+  if(index > -1){
+
+    profile.skills.splice(index,1);
+    card.classList.remove('selected');
+
+  }else{
+
+    if(profile.skills.length >= 9){
+      showToast('Maximum 9 skills allowed','error');
+      return;
+    }
+
+    profile.skills.push(skill);
+    card.classList.add('selected');
+  }
+
+  document.getElementById('skillCount').textContent =
+    profile.skills.length;
+
+  renderSkills();
+  updateProgress();
+}
+
+function renderSkills(){
+
+  const container =
+  document.getElementById('skillsContainer');
+
+  container.innerHTML = '';
+
+  document.getElementById('skillCount').textContent =
+    profile.skills.length;
+
+  profile.skills.forEach(skill=>{
+
+    const tag =
+    document.createElement('span');
+
+    tag.className = 'tag';
+    tag.textContent = skill;
+
+    container.appendChild(tag);
+
+    document
+      .querySelectorAll('.skill-card')
+      .forEach(card=>{
+
+        if(card.textContent.includes(skill)){
+          card.classList.add('selected');
+        }
+      });
+
+  });
+
+} 
+window.removeSkill = function(i) {
+  profile.skills.splice(i, 1);
+  renderSkills();
+  updateProgress();
+};
+
+// ── EXPERIENCE ──
+window.openExpModal = function(index) {
+  editExpIndex = (index !== undefined) ? index : null;
+  if (editExpIndex !== null) {
+    const exp = profile.experience[editExpIndex];
+    document.getElementById('expTitle').value   = exp.title   || '';
+    document.getElementById('expCompany').value = exp.company || '';
+    document.getElementById('expStart').value   = exp.start   || '';
+    document.getElementById('expEnd').value     = exp.end     || '';
+    document.getElementById('expDesc').value    = exp.desc    || '';
+  } else {
+    ['expTitle','expCompany','expStart','expEnd','expDesc']
+      .forEach(id => document.getElementById(id).value = '');
+  }
+  document.getElementById('expModal').classList.add('open');
+};
+
+window.saveExp = function() {
+  const title   = document.getElementById('expTitle').value.trim();
+  const company = document.getElementById('expCompany').value.trim();
+  if (!title || !company) { showToast('Job title and company are required', 'error'); return; }
+
+  const entry = {
+    title, company,
+    start: document.getElementById('expStart').value,
+    end:   document.getElementById('expEnd').value,
+    desc:  document.getElementById('expDesc').value.trim()
+  };
+
+  if (!Array.isArray(profile.experience)) profile.experience = [];
+  if (editExpIndex !== null) profile.experience[editExpIndex] = entry;
+  else profile.experience.unshift(entry);
+
+  renderExperience();
+  closeModal('expModal');
+  showToast('Experience saved', 'success');
+  updateProgress();
+};
+
+function renderExperience() {
+  const list = document.getElementById('experienceList');
+  if (!profile.experience || profile.experience.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">💼</div><div class="empty-text">No experience added yet</div></div>`;
+    return;
+  }
+  list.innerHTML = '';
+  profile.experience.forEach((exp, i) => {
+    const div = document.createElement('div');
+    div.className = 'entry-card';
+    const dateStr = [
+      exp.start ? fmtMonth(exp.start) : '',
+      exp.end   ? fmtMonth(exp.end)   : 'Present'
+    ].filter(Boolean).join(' – ');
+    div.innerHTML = `
+      <div class="entry-header">
+        <div>
+          <div class="entry-title">${exp.title} <span style="color:var(--muted);font-weight:400">@ ${exp.company}</span></div>
+          <div class="entry-subtitle">${dateStr}</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="openExpModal(${i})">✏️</button>
+          <button class="btn btn-ghost btn-sm" onclick="removeExp(${i})">🗑️</button>
+        </div>
+      </div>
+      ${exp.desc ? `<p style="font-size:.85rem;color:var(--muted);line-height:1.5">${exp.desc}</p>` : ''}
+    `;
+    list.appendChild(div);
+  });
+}
+
+window.removeExp = function(i) {
+  profile.experience.splice(i, 1);
+  renderExperience();
+  updateProgress();
+};
+
+// ── EDUCATION ──
+window.openEduModal = function(index) {
+  editEduIndex = (index !== undefined) ? index : null;
+  if (editEduIndex !== null) {
+    const edu = profile.education[editEduIndex];
+    document.getElementById('eduInstitution').value  = edu.institution  || '';
+    document.getElementById('eduQualification').value = edu.qualification || '';
+    document.getElementById('eduYear').value          = edu.year          || '';
+    document.getElementById('eduDesc').value          = edu.desc          || '';
+  } else {
+    ['eduInstitution','eduQualification','eduYear','eduDesc']
+      .forEach(id => document.getElementById(id).value = '');
+  }
+  document.getElementById('eduModal').classList.add('open');
+};
+
+window.saveEdu = function() {
+  const institution   = document.getElementById('eduInstitution').value.trim();
+  const qualification = document.getElementById('eduQualification').value.trim();
+  if (!institution || !qualification) {
+    showToast('Institution and qualification are required', 'error'); return;
+  }
+
+  const entry = {
+    institution, qualification,
+    year: document.getElementById('eduYear').value,
+    desc: document.getElementById('eduDesc').value.trim()
+  };
+
+  if (!Array.isArray(profile.education)) profile.education = [];
+  if (editEduIndex !== null) profile.education[editEduIndex] = entry;
+  else profile.education.unshift(entry);
+
+  renderEducation();
+  closeModal('eduModal');
+  showToast('Education saved', 'success');
+  updateProgress();
+};
+
+function renderEducation() {
+  const list = document.getElementById('educationList');
+  if (!profile.education || profile.education.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">🎓</div><div class="empty-text">No education added yet</div></div>`;
+    return;
+  }
+  list.innerHTML = '';
+  profile.education.forEach((edu, i) => {
+    const div = document.createElement('div');
+    div.className = 'entry-card';
+    div.innerHTML = `
+      <div class="entry-header">
+        <div>
+          <div class="entry-title">${edu.qualification}</div>
+          <div class="entry-subtitle">${edu.institution}${edu.year ? ' · ' + edu.year : ''}</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="openEduModal(${i})">✏️</button>
+          <button class="btn btn-ghost btn-sm" onclick="removeEdu(${i})">🗑️</button>
+        </div>
+      </div>
+      ${edu.desc ? `<p style="font-size:.85rem;color:var(--muted);line-height:1.5">${edu.desc}</p>` : ''}
+    `;
+    list.appendChild(div);
+  });
+}
+
+window.removeEdu = function(i) {
+  profile.education.splice(i, 1);
+  renderEducation();
+  updateProgress();
+};
+
+window.closeModal = function(id) {
+  document.getElementById(id).classList.remove('open');
+};
+
+// Close modal when clicking outside
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+});
+
+// ── DOCUMENT UPLOAD ──
+// Stage files locally and show a preview row; actual upload happens on "Save Documents"
+window.handleDocUpload = function(type, input) {
+  const files = input.files;
+  if (!files || files.length === 0) return;
+
+  if (type === 'quals') {
+    // Multiple files
+    pendingDocs[type] = Array.from(files);
+    const container = document.getElementById('qualsPreview');
+    container.innerHTML = '';
+    Array.from(files).forEach(f => container.appendChild(makeFilePreview(f)));
+  } else {
+    const file = files[0];
+    if (file.size > 10 * 1024 * 1024) {
+      showToast(`${file.name} exceeds 10 MB limit`, 'error');
+      input.value = '';
+      return;
+    }
+    pendingDocs[type] = file;
+    const previewId = { cv: 'cvPreview', photo: 'photoPreview', id: 'idPreview' }[type];
+    const container = document.getElementById(previewId);
+    if (container) {
+      container.innerHTML = '';
+      container.appendChild(makeFilePreview(file));
+    }
+  }
+};
+
+function makeFilePreview(file) {
+  const ext  = file.name.split('.').pop().toLowerCase();
+  const icon = ext === 'pdf' ? '📄' : ['doc','docx'].includes(ext) ? '📝' : ['jpg','jpeg','png'].includes(ext) ? '🖼️' : '📎';
+  const size = file.size < 1024*1024
+    ? `${(file.size/1024).toFixed(0)} KB`
+    : `${(file.size/1024/1024).toFixed(1)} MB`;
+  const div = document.createElement('div');
+  div.className = 'file-item';
+  div.innerHTML = `<span class="file-icon">${icon}</span><span class="file-name">${file.name}</span><span class="file-size">${size}</span>`;
+  return div;
+}
+
+// Upload all pending docs to Firebase Storage and save URLs to Firestore
+window.uploadDocuments = async function() {
+  const keys = Object.keys(pendingDocs);
+  if (keys.length === 0) {
+    showToast('Select at least one document first', 'error'); return;
+  }
+  if (!uid) { showToast('Not authenticated', 'error'); return; }
+
+  const savingEl = document.getElementById('saving-documents');
+  if (savingEl) savingEl.classList.add('show');
+  showToast('Uploading documents…', 'info');
+
+  const updates = {};
+  const timestamp = new Date().toLocaleDateString('en-ZA');
+
+  try {
+    for (const type of keys) {
+      const fileOrFiles = pendingDocs[type];
+
+      if (type === 'quals') {
+        // Upload multiple qualification files
+        const urls = [];
+        const names = [];
+        for (const file of fileOrFiles) {
+          const sRef = storageRef(storage, `docs/${uid}/quals/${file.name}`);
+          await uploadBytes(sRef, file);
+          const url = await getDownloadURL(sRef);
+          urls.push(url);
+          names.push(file.name);
+        }
+        updates.qualsUrls  = urls;
+        updates.qualsNames = names;
+        updates.qualsUploadDate = timestamp;
+      } else {
+        const file = fileOrFiles;
+        const sRef = storageRef(storage, `docs/${uid}/${type}/${file.name}`);
+        await uploadBytes(sRef, file);
+        const url = await getDownloadURL(sRef);
+
+        if (type === 'cv') {
+          updates.cvUrl        = url;
+          updates.cvName       = file.name;
+          updates.cvUploadDate = timestamp;
+        } else if (type === 'photo') {
+          updates.photoUrl        = url;
+          updates.photoName       = file.name;
+          updates.photoUploadDate = timestamp;
+        } else if (type === 'id') {
+          updates.idUrl        = url;
+          updates.idName       = file.name;
+          updates.idUploadDate = timestamp;
+        }
+      }
+    }
+
+    // Persist to Firestore documents collection
+    await setDoc(doc(db, 'documents', uid), updates, { merge: true });
+
+    // Also save doc URLs into the talent_profile for easy access
+    await setDoc(doc(db, 'talent_profiles', uid), {
+      documents: { ...documentsData, ...updates },
+      updatedAt: new Date().toISOString()
+    }, { merge: true });
+
+    // Update local state
+    Object.assign(documentsData, updates);
+
+    // Clear staged files
+    for (const k of keys) delete pendingDocs[k];
+
+    updateDocChecklist();
+    updateProgress();
+    renderAllChecks();
+    showToast('Documents saved successfully ✓', 'success');
+
+  } catch(e) {
+    console.error('Upload error:', e);
+    showToast('Upload failed: ' + e.message, 'error');
+  } finally {
+    if (savingEl) savingEl.classList.remove('show');
+  }
+};
+
+// ── UPDATE DOCUMENT CHECKLIST ──
+function updateDocChecklist() {
+  setChecklistItem('chkCV',    !!(documentsData.cvUrl));
+  setChecklistItem('chkPhoto', !!(documentsData.photoUrl));
+  setChecklistItem('chkID',    !!(documentsData.idUrl));
+  setChecklistItem('chkQuals', !!(documentsData.qualsUrls?.length));
+}
+
+function setChecklistItem(id, done) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('done',    done);
+  el.classList.toggle('missing', !done);
+  const icon = el.querySelector('.doc-check-icon');
+  if (icon) icon.textContent = done ? '✓' : '○';
+}
+
+// ── CRIMINAL DECLARATION ──
+window.saveCriminalDeclaration = async function() {
+  const val = document.querySelector('input[name="criminalRecord"]:checked')?.value;
+  if (!val) { showToast('Please select a declaration option', 'error'); return; }
+
+  const details = document.getElementById('criminalRecordDetails')?.value.trim() || '';
+
+  try {
+    await setDoc(doc(db, 'verification', uid), {
+      criminalRecord: val,
+      criminalRecordDetails: details
+    }, { merge: true });
+
+    // Mirror onto talent_profile
+    await setDoc(doc(db, 'talent_profiles', uid), {
+      criminalRecord: val,
+      criminalRecordDetails: details
+    }, { merge: true });
+
+    profile.criminalRecord = val;
+    profile.criminalRecordDetails = details;
+    showToast('Declaration saved ✓', 'success');
+  } catch(e) {
+    showToast('Save failed: ' + e.message, 'error');
+  }
+};
+
+// ── PAYMENT ──
+window.selectPayment = function(type) {
+  selectedPayment = type;
+  document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+  const map = { full: 'payFull', grad: 'payGrad', unemp: 'payUnemp' };
+  const el = document.getElementById(map[type]);
+  if (el) el.classList.add('selected');
+};
+
+window.processPayment = async function() {
+  if (!selectedPayment) {
+    showToast('Please select a payment option', 'error'); return;
+  }
+  if (selectedPayment === 'full') {
+    showToast('Redirecting to payment gateway…', 'info');
+    setTimeout(() => window.open('https://payfast.io', '_blank'), 800);
+  } else {
+    try {
+      await setDoc(doc(db, 'verification', uid), {
+        exemptionType:    selectedPayment,
+        exemptionApplied: true,
+        status:           'pending'
+      }, { merge: true });
+      showToast('Exemption application submitted!', 'success');
+    } catch(e) {
+      showToast('Submission failed: ' + e.message, 'error');
+    }
+  }
+};
+
+// ── SAVE SECTION ──
+window.saveSection = async function(section) {
+  if (!uid) { showToast('Please wait, authenticating…', 'info'); return; }
+
+  gatherFormData();
+
+  if (section === 'profile') {
+    if (!profile.fullName) { showToast('Full name is required', 'error'); return; }
+    if (!profile.email)    { showToast('Email is required', 'error'); return; }
+  }
+
+  profile.completedSections = profile.completedSections || {};
+  profile.completedSections[section] = true;
+
+  await saveToFirestore(false);
+  updateProgress();
+  renderAllChecks();
+  showToast(`${capitalize(section)} saved!`, 'success');
+
+  const order = ['profile','experience','education','skills','documents','review'];
+  const next  = order[order.indexOf(section) + 1];
+  if (next) {
+    setTimeout(() => {
+      const navEl = document.querySelector(`[data-section=${next}]`);
+      goTo(next, navEl);
+    }, 400);
+  }
+};
+
+function gatherFormData() {
+  const get = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  profile.fullName        = get('fullName');
+  profile.jobTitle        = get('jobTitle');
+  profile.email           = get('email');
+  profile.mobile          = get('phone');
+  profile.province        = get('province');
+  profile.experienceLevel = get('experienceLevel');
+  profile.summary         = get('summary');
+}
+
+async function saveToFirestore(silent) {
+  if (!uid) return;
+  try {
+    gatherFormData();
+    await setDoc(doc(db, 'talent_profiles', uid), {
+      ...profile,
+      userId:    uid,
+      updatedAt: new Date().toISOString()
+    }, { merge: true });
+  } catch(e) {
+    console.error('Save error:', e);
+    if (!silent) showToast('Save failed. Check connection.', 'error');
+  }
+}
+
+// ── PROGRESS ──
+// Documents section is considered done if any doc has been uploaded
+function docsComplete() {
+  return !!(
+    documentsData.cvUrl ||
+    documentsData.photoUrl ||
+    documentsData.idUrl ||
+    documentsData.qualsUrls?.length
+  );
+}
+
+function updateProgress() {
+  const checks = [
+    !!profile.completedSections?.profile,
+    (profile.experience?.length || 0) > 0,
+    (profile.education?.length  || 0) > 0,
+    (profile.skills?.length     || 0) > 0,
+    docsComplete()
+  ];
+  const pct = Math.round((checks.filter(Boolean).length / checks.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent  = pct + '%';
+}
+
+function renderAllChecks() {
+  const map = {
+    profile:    !!profile.completedSections?.profile,
+    experience: (profile.experience?.length || 0) > 0,
+    education:  (profile.education?.length  || 0) > 0,
+    skills:     (profile.skills?.length     || 0) > 0,
+    documents:  docsComplete()
+  };
+  Object.entries(map).forEach(([section, done]) => {
+    const el = document.getElementById('check-' + section);
+    if (el) el.classList.toggle('done', done);
+  });
+}
+
+// ── REVIEW ──
+function buildReview() {
+  gatherFormData();
+
+  const sections = [
+    { key: 'profile',    label: 'Profile',          done: !!profile.completedSections?.profile },
+    { key: 'experience', label: 'Work Experience',   done: (profile.experience?.length || 0) > 0 },
+    { key: 'education',  label: 'Education',         done: (profile.education?.length  || 0) > 0 },
+    { key: 'skills',     label: 'Skills',            done: (profile.skills?.length     || 0) > 0 },
+    { key: 'documents',  label: 'Documents',         done: docsComplete() },
+  ];
+
+  const allDone = sections.every(s => s.done);
+
+  let html = `
+    <div class="review-section">
+      <div class="review-label">Completion Status</div>
+      <ul class="checklist">
+        ${sections.map(s => `
+          <li class="${s.done ? 'done' : 'missing'}">
+            <span class="check-icon">${s.done ? '✓' : '○'}</span>
+            ${s.label}
+            ${!s.done
+              ? `<span style="margin-left:auto"><a href="#"
+                  onclick="goTo('${s.key}',document.querySelector('[data-section=${s.key}]'));return false"
+                  style="font-size:.75rem;color:var(--error);text-decoration:none">Complete →</a></span>`
+              : ''}
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  `;
+
+  if (profile.fullName || profile.email) {
+    html += `
+      <div class="review-section">
+        <div class="review-label">Profile Details</div>
+        <div class="review-grid">
+          ${rField('Name',     profile.fullName)}
+          ${rField('Job Title',profile.jobTitle)}
+          ${rField('Email',    profile.email)}
+          ${rField('Mobile',   profile.mobile)}
+          ${rField('Province', profile.province)}
+          ${rField('Level',    profile.experienceLevel)}
+        </div>
+      </div>
+    `;
+  }
+
+  if (profile.skills?.length) {
+    html += `
+      <div class="review-section">
+        <div class="review-label">Skills (${profile.skills.length})</div>
+        <div class="tags-wrap">
+          ${profile.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // Show uploaded document links
+  const docLinks = [
+    documentsData.cvUrl    && `<a href="${documentsData.cvUrl}"    target="_blank" style="font-size:.82rem;color:var(--accent)">📄 CV</a>`,
+    documentsData.photoUrl && `<a href="${documentsData.photoUrl}" target="_blank" style="font-size:.82rem;color:var(--accent)">🖼️ Photo</a>`,
+    documentsData.idUrl    && `<a href="${documentsData.idUrl}"    target="_blank" style="font-size:.82rem;color:var(--accent)">🪪 ID</a>`,
+    documentsData.qualsUrls?.length && `<a href="${documentsData.qualsUrls[0]}" target="_blank" style="font-size:.82rem;color:var(--accent)">🎓 Qualifications</a>`
+  ].filter(Boolean);
+
+  if (docLinks.length) {
+    html += `
+      <div class="review-section">
+        <div class="review-label">Uploaded Documents</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
+          ${docLinks.join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  if (!allDone) {
+    html += `<p style="font-size:.82rem;color:var(--muted);margin-top:16px">⚠️ Complete all sections before submitting.</p>`;
+  }
+
+  document.getElementById('reviewContent').innerHTML = html;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled     = !allDone;
+  btn.style.opacity = allDone ? '1' : '0.5';
+}
+
+function rField(label, value) {
+  return `<div class="review-field">
+    <div class="review-field-label">${label}</div>
+    <div class="review-field-value">${value || '<span style="color:var(--muted)">—</span>'}</div>
+  </div>`;
+}
+
+// ── SUBMIT ──
+window.submitProfile = async function() {
+  if (!uid) return;
+  try {
+    gatherFormData();
+    await setDoc(doc(db, 'talent_profiles', uid), {
+      ...profile,
+      status:               'pending_review',
+      onboardingCompleted:  true,
+      submittedAt:          new Date().toISOString(),
+      userId:               uid,
+      admin:                false
+    }, { merge: true });
+    showToast('Profile submitted for review! 🎉', 'success');
+    setTimeout(() => window.location.href = 'dashboard.html', 2000);
+  } catch(e) {
+    showToast('Submission failed. Please try again.', 'error');
+    console.error(e);
+  }
+};
+
+// ── TOAST ──
+window.showToast = function(msg, type = 'info') {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.className = `toast ${type}`;
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 3200);
+};
+
+// ── HELPERS ──
+function fmtMonth(val) {
+  if (!val) return '';
+  const [y, m] = val.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[parseInt(m)-1]} ${y}`;
+}
+
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+</script>
+</body>
+</html>

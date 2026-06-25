@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launchp4d | Talent Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F3F0;
+  --ink: #141412;
+  --ink-mid: #3a3936;
+  --warm: #9C8B7E;
+  --warm-light: #C8BAB0;
+  --warm-pale: #EDE8E2;
+  --card: #FFFFFF;
+  --border: #E3DDD7;
+  --border-mid: #C9C1B9;
+  --muted: #8A8480;
+  --muted2: #B2ACA7;
+  --success: #2d6e4e;
+  --success-bg: #EAF3EE;
+  --featured-gold: #B08830;
+  --featured-bg: #FBF4E5;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOPNAV ── */
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,243,240,0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+}
+.logo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warm); }
+
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+.nav-count {
+  font-size: 0.72rem; color: var(--muted);
+  padding: 4px 11px; border-radius: 4px;
+  background: var(--warm-pale); border: 1px solid var(--border);
+  font-weight: 500; letter-spacing: 0.01em;
+}
+
+.nav-btn {
+  font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500;
+  padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: all 0.15s;
+  text-decoration: none; letter-spacing: 0.01em;
+}
+.nav-btn-outline {
+  background: transparent; color: var(--ink-mid);
+  border: 1px solid var(--border-mid);
+}
+.nav-btn-outline:hover { border-color: var(--warm); color: var(--warm); }
+.nav-btn-solid {
+  background: var(--ink); color: #fff; border: 1px solid var(--ink);
+}
+.nav-btn-solid:hover { background: #2a2a28; }
+
+/* ── HERO ── */
+.hero {
+  padding: 60px 48px 44px;
+  max-width: 1200px; margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 48px;
+}
+
+.hero-left { max-width: 520px; }
+
+.hero-eyebrow {
+  font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--warm); font-weight: 600; margin-bottom: 14px;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 3.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.03;
+  margin-bottom: 18px;
+  color: var(--ink);
+  text-align: center;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--warm);
+    text-align: center;
+
+}
+
+.hero-sub {
+  font-size: 0.88rem; color: var(--muted); line-height: 1.72; max-width: 400px;  text-align: center;
+
+}
+
+.hero-stats {
+  display: flex; gap: 0; flex-shrink: 0;
+  border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  background: var(--card);
+    text-align: center;
+
+}
+
+.hstat {
+  padding: 20px 28px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.hstat:last-child { border-right: none; }
+
+.hstat-num {
+  font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1; display: block; color: var(--ink);
+}
+.hstat-label { font-size: 0.68rem; color: var(--muted); margin-top: 5px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  max-width: 1200px; margin: 0 auto;
+  padding: 20px 48px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+  position: sticky; top: 60px; z-index: 90;
+}
+
+.search-field {
+  flex: 1; min-width: 200px; max-width: 300px;
+  position: relative;
+}
+.search-field input {
+  width: 100%; padding: 9px 12px 9px 34px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; font-family: 'DM Sans', sans-serif;
+  font-size: 0.83rem; color: var(--ink); outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search-field input:focus {
+  border-color: var(--warm);
+  box-shadow: 0 0 0 3px rgba(156,139,126,0.12);
+  background: #fff;
+}
+.search-field input::placeholder { color: var(--muted2); }
+.search-icon {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  color: var(--muted2); font-size: 0.9rem; pointer-events: none;
+}
+
+.filter-select {
+  padding: 9px 28px 9px 12px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem; color: var(--ink); outline: none; cursor: pointer;
+  transition: border-color 0.15s; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23B2ACA7' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+  min-width: 148px;
+}
+.filter-select:focus { border-color: var(--warm); background-color: #fff; }
+
+.filter-divider { width: 1px; height: 22px; background: var(--border); flex-shrink: 0; }
+
+.filter-chips { display: flex; gap: 5px; flex-wrap: wrap; }
+.chip {
+  padding: 6px 13px; border-radius: 4px; font-size: 0.75rem; font-weight: 500;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--muted); cursor: pointer; transition: all 0.13s; user-select: none;
+  letter-spacing: 0.01em;
+}
+.chip:hover { border-color: var(--warm-light); color: var(--ink-mid); }
+.chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.results-meta { margin-left: auto; font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+
+/* ── VAULT LAYOUT ── */
+.vault-outer { max-width: 1200px; margin: 0 auto; padding: 32px 48px 80px; }
+
+.section-label {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-label h2 {
+  font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+}
+.section-label span { font-size: 0.75rem; color: var(--muted2); }
+
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+/* ── TALENT CARD ── */
+.tcard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+  animation: cardIn 0.35s ease both;
+  display: flex;
+  flex-direction: column;
+}
+
+.tcard:hover {
+  border-color: var(--warm-light);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* featured */
+.tcard.featured {
+  border-color: rgba(176,136,48,0.35);
+  border-left: 3px solid var(--featured-gold);
+}
+
+.featured-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--featured-gold);
+  background: var(--featured-bg); border: 1px solid rgba(176,136,48,0.25);
+  padding: 3px 8px; border-radius: 3px;
+}
+
+/* CARD TOP: avatar + title block */
+.card-top {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 20px 0;
+}
+
+/* Avatar — clean circle, no overflow tricks */
+.card-avatar {
+  width: 56px; height: 56px;
+  border-radius: 8px;
+  background: var(--warm-pale);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
+  color: var(--warm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.card-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+
+.card-identity { flex: 1; min-width: 0; padding-top: 2px; }
+
+/* Job title — primary, big */
+.card-job-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Name — secondary, quieter */
+.card-person-name {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 8px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* CARD BODY */
+.card-body { padding: 14px 20px 18px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+/* META */
+.card-meta { display: flex; flex-direction: column; gap: 5px; }
+.card-meta-row {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.76rem; color: var(--muted);
+}
+.meta-icon {
+  font-size: 0.7rem; width: 16px; text-align: center;
+  flex-shrink: 0; opacity: 0.6;
+}
+
+/* SKILLS */
+.card-skills { display: flex; flex-wrap: wrap; gap: 4px; }
+.skill-pill {
+  font-size: 0.68rem; padding: 3px 8px; border-radius: 3px;
+  background: var(--warm-pale); color: var(--muted);
+  border: 1px solid var(--border); font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.skill-more {
+  font-size: 0.68rem; padding: 3px 8px; border-radius: 3px;
+  background: transparent; color: var(--muted2); border: 1px solid var(--border);
+}
+
+/* CARD FOOTER */
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  margin-top: auto;
+}
+
+.card-status {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 4px 9px; border-radius: 3px;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.card-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.status-available { background: var(--success-bg); color: var(--success); }
+.status-available::before { background: var(--success); }
+.status-unavailable { background: var(--warm-pale); color: var(--muted); }
+.status-unavailable::before { background: var(--muted2); }
+
+.card-action {
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
+  padding: 7px 13px; border-radius: 5px; border: 1px solid var(--border-mid);
+  cursor: pointer; background: transparent; color: var(--ink-mid);
+  transition: all 0.14s; letter-spacing: 0.01em;
+}
+.card-action:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* ── PROFILE DRAWER ── */
+.drawer-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(4px);
+  z-index: 200; opacity: 0; pointer-events: none;
+  transition: opacity 0.22s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: 480px; background: var(--card);
+  border-left: 1px solid var(--border);
+  z-index: 201; overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.3, 0, 0.08, 1);
+  box-shadow: -16px 0 48px rgba(0,0,0,0.07);
+}
+.drawer.open { transform: translateX(0); }
+
+/* drawer header */
+.drawer-header {
+  padding: 28px 28px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 18px;
+  position: sticky; top: 0; background: var(--card); z-index: 5;
+}
+
+.drawer-avatar {
+  width: 72px; height: 72px; border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--warm-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem;
+  color: var(--warm); overflow: hidden; flex-shrink: 0;
+}
+.drawer-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+.drawer-identity { flex: 1; }
+.drawer-job-title {
+  font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 5px; color: var(--ink);
+}
+.drawer-person-name { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
+
+.drawer-close {
+  width: 30px; height: 30px; border-radius: 5px;
+  background: var(--bg); border: 1px solid var(--border);
+  cursor: pointer; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); flex-shrink: 0; transition: all 0.14s;
+}
+.drawer-close:hover { background: var(--warm-pale); color: var(--ink); }
+
+/* drawer body */
+.drawer-body { padding: 24px 28px 40px; }
+
+.drawer-contact {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px 16px; background: var(--bg);
+  border-radius: 8px; margin-bottom: 22px; border: 1px solid var(--border);
+}
+.dcontact-row {
+  display: flex; align-items: center; gap: 10px; font-size: 0.8rem;
+}
+.dcontact-icon {
+  width: 26px; height: 26px; border-radius: 5px;
+  background: var(--warm-pale); display: flex; align-items: center;
+  justify-content: center; font-size: 0.7rem; color: var(--warm);
+  flex-shrink: 0;
+}
+.dcontact-val { color: var(--ink); font-weight: 500; }
+.dcontact-label { font-size: 0.65rem; color: var(--muted2); }
+
+.dsection-head {
+  font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--muted2); margin-bottom: 9px; margin-top: 20px; font-weight: 700;
+}
+
+.exp-item, .edu-item {
+  padding: 11px 14px; background: var(--bg);
+  border-radius: 7px; margin-bottom: 7px; border: 1px solid var(--border);
+}
+.exp-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 2px; }
+.exp-company { font-size: 0.75rem; color: var(--muted); }
+.exp-dates { font-size: 0.7rem; color: var(--muted2); margin-top: 3px; }
+.edu-qual { font-size: 0.83rem; font-weight: 600; }
+.edu-inst { font-size: 0.73rem; color: var(--muted); margin-top: 2px; }
+
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 5px; }
+.skill-d-pill {
+  font-size: 0.73rem; padding: 4px 10px; border-radius: 3px;
+  background: var(--warm-pale); color: var(--muted);
+  border: 1px solid var(--border); font-weight: 500;
+}
+
+.drawer-cta {
+  margin-top: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.dcta-btn {
+  padding: 12px; border-radius: 7px; font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem; font-weight: 500; cursor: pointer;
+  transition: all 0.15s; border: none; text-align: center; letter-spacing: 0.01em;
+}
+.dcta-primary { background: var(--ink); color: #fff; }
+.dcta-primary:hover { background: #2a2a28; }
+.dcta-outline { background: transparent; color: var(--ink); border: 1px solid var(--border-mid); }
+.dcta-outline:hover { border-color: var(--warm); background: var(--warm-pale); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center; padding: 80px 20px; color: var(--muted);
+}
+.empty-state h3 {
+  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
+  color: var(--ink); margin: 14px 0 8px;
+}
+.empty-state p { font-size: 0.83rem; line-height: 1.6; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 22px; right: 22px;
+  background: var(--ink); color: #fff;
+  padding: 12px 17px; border-radius: 7px;
+  font-size: 0.8rem; display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.16);
+  transform: translateY(56px); opacity: 0;
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  z-index: 999;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── LOADING SKELETON ── */
+.shimmer {
+  background: linear-gradient(90deg, var(--warm-pale) 25%, #eee8e0 50%, var(--warm-pale) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.skeleton-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; padding: 20px;
+}
+.sk-top { display: flex; gap: 14px; margin-bottom: 16px; }
+.sk-avatar { width: 56px; height: 56px; border-radius: 8px; background: var(--warm-pale); flex-shrink: 0; }
+.sk-lines { flex: 1; padding-top: 4px; }
+.sk-line { height: 10px; margin-bottom: 8px; }
+
+@media (max-width: 768px) {
+  .topnav, .hero, .filter-bar, .vault-outer { padding-left: 20px; padding-right: 20px; }
+  .hero { flex-direction: column; align-items: flex-start; padding-top: 36px; }
+  .hero-stats { width: 100%; }
+  .hstat { flex: 1; padding: 14px 16px; }
+  .vault-grid { grid-template-columns: 1fr; }
+  .drawer { width: 100%; }
+  .filter-bar { top: 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="logo"><span class="logo-dot"></span>Launchp4d</div>
+  <div class="nav-right">
+    <span class="nav-count" id="navCount">Loading…</span>
+    <a href="index.html" class="nav-btn nav-btn-outline">Home</a>
+    <a href="dashboard.html" class="nav-btn nav-btn-outline">Dashboard</a>
+    <button class="nav-btn nav-btn-solid" onclick="showToast('Contact hello@launchp4d.com to register as a hiring partner','info')">Hire Talent</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:1200px;margin:0 auto;">
+  <div class="hero-left">
+    <h1 class="hero-title">South African<br><em>verified</em> talent</h1>
+    <p class="hero-sub">Every profile is manually reviewed and verified. Browse pre-screened professionals ready to contribute from day one.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat">
+      <span class="hstat-num" id="heroTotal">—</span>
+      <div class="hstat-label">Verified</div>
+    </div>
+    <div class="hstat">
+      <span class="hstat-num" id="heroAvailable">—</span>
+      <div class="hstat-label">Available Now</div>
+    </div>
+    <div class="hstat">
+      <span class="hstat-num" id="heroProvinces">9</span>
+      <div class="hstat-label">Provinces</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filter-bar">
+  <div class="search-field">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="searchInput" placeholder="Name, role, skill…" oninput="applyFilters()">
+  </div>
+
+  <select class="filter-select" id="filterProvince" onchange="applyFilters()">
+    <option value="">All Provinces</option>
+    <option>Gauteng</option>
+    <option>Western Cape</option>
+    <option>KwaZulu-Natal</option>
+    <option>Eastern Cape</option>
+    <option>Limpopo</option>
+    <option>Mpumalanga</option>
+    <option>North West</option>
+    <option>Northern Cape</option>
+    <option>Free State</option>
+  </select>
+
+  <select class="filter-select" id="filterLevel" onchange="applyFilters()">
+    <option value="">All Levels</option>
+    <option>Junior</option>
+    <option>Mid-Level</option>
+    <option>Senior</option>
+    <option>Lead</option>
+    <option>Executive</option>
+  </select>
+
+  <div class="filter-divider"></div>
+
+  <div class="filter-chips" id="categoryChips">
+    <div class="chip active" data-cat="" onclick="selectChip(this)">All</div>
+    <div class="chip" data-cat="Technology" onclick="selectChip(this)">Technology</div>
+    <div class="chip" data-cat="Finance" onclick="selectChip(this)">Finance</div>
+    <div class="chip" data-cat="Marketing" onclick="selectChip(this)">Marketing</div>
+    <div class="chip" data-cat="Design" onclick="selectChip(this)">Design</div>
+    <div class="chip" data-cat="Operations" onclick="selectChip(this)">Operations</div>
+  </div>
+
+  <span class="results-meta" id="resultsMeta"></span>
+</div>
+
+<!-- CONTENT -->
+<div class="vault-outer">
+
+  <!-- Featured -->
+  <div id="featuredSection" style="display:none">
+    <div class="section-label" style="margin-bottom:14px">
+      <h2>Featured Talent</h2>
+      <span>Hand-picked by the Launchp4d team</span>
+    </div>
+    <div class="vault-grid" id="featuredGrid"></div>
+  </div>
+
+  <!-- All Talent -->
+  <div class="section-label">
+    <h2>All Talent</h2>
+    <span id="resultsMeta2"></span>
+  </div>
+  <div class="vault-grid" id="vaultGrid">
+    <!-- skeletons -->
+    <div class="skeleton-card"><div class="sk-top"><div class="sk-avatar shimmer"></div><div class="sk-lines"><div class="shimmer sk-line" style="width:60%"></div><div class="shimmer sk-line" style="width:40%"></div></div></div><div class="shimmer sk-line" style="width:80%"></div><div class="shimmer sk-line" style="width:65%;margin-top:8px"></div></div>
+    <div class="skeleton-card"><div class="sk-top"><div class="sk-avatar shimmer"></div><div class="sk-lines"><div class="shimmer sk-line" style="width:55%"></div><div class="shimmer sk-line" style="width:35%"></div></div></div><div class="shimmer sk-line" style="width:75%"></div><div class="shimmer sk-line" style="width:60%;margin-top:8px"></div></div>
+    <div class="skeleton-card"><div class="sk-top"><div class="sk-avatar shimmer"></div><div class="sk-lines"><div class="shimmer sk-line" style="width:65%"></div><div class="shimmer sk-line" style="width:42%"></div></div></div><div class="shimmer sk-line" style="width:70%"></div><div class="shimmer sk-line" style="width:55%;margin-top:8px"></div></div>
+    <div class="skeleton-card"><div class="sk-top"><div class="sk-avatar shimmer"></div><div class="sk-lines"><div class="shimmer sk-line" style="width:50%"></div><div class="shimmer sk-line" style="width:38%"></div></div></div><div class="shimmer sk-line" style="width:80%"></div><div class="shimmer sk-line" style="width:68%;margin-top:8px"></div></div>
+    <div class="skeleton-card"><div class="sk-top"><div class="sk-avatar shimmer"></div><div class="sk-lines"><div class="shimmer sk-line" style="width:58%"></div><div class="shimmer sk-line" style="width:44%"></div></div></div><div class="shimmer sk-line" style="width:72%"></div><div class="shimmer sk-line" style="width:62%;margin-top:8px"></div></div>
+    <div class="skeleton-card"><div class="sk-top"><div class="sk-avatar shimmer"></div><div class="sk-lines"><div class="shimmer sk-line" style="width:62%"></div><div class="shimmer sk-line" style="width:36%"></div></div></div><div class="shimmer sk-line" style="width:78%"></div><div class="shimmer sk-line" style="width:58%;margin-top:8px"></div></div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="profileDrawer">
+  <div id="drawerContent"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-dot" id="toastDot"></span>
+  <span id="toastMsg"></span>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAyk_sM016AC-4ZTSI7rdi0J3mAJhwrZBk",
+  authDomain: "launchp4d.firebaseapp.com",
+  projectId: "launchp4d",
+  storageBucket: "launchp4d.firebasestorage.app",
+  messagingSenderId: "1063626171917",
+  appId: "1:1063626171917:web:55056d732b7bd45e819744"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let allTalent = [];
+let filteredTalent = [];
+let activeCat = '';
+
+// ── LOAD ──
+async function loadVault() {
+  try {
+    const snap = await getDocs(collection(db, 'talent_profiles'));
+    allTalent = snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .filter(p => p.status === 'approved' && p.visibleInVault !== false);
+
+    if (!allTalent.length) throw new Error('no approved profiles');
+ 
+  } catch(e) {
+    console.warn('Using demo data:', e.message);
+    allTalent = getDemoData();
+  }
+
+  // Resolve photo URLs from the documents sub-collection if not already on profile
+  filteredTalent = [...allTalent];
+  renderStats();
+  renderGrid(filteredTalent);
+  renderFeatured();
+}
+
+function getDemoData() {
+  return [
+    { id:'d1', fullName:'Amara Nkosi', jobTitle:'Senior UX Designer', email:'amara.n@email.com', province:'Gauteng', experienceLevel:'Senior (6–9 years)', skills:['Figma','User Research','Prototyping','Design Systems','Framer'], summary:'Award-winning designer with 7 years crafting digital products across fintech, health, and e-commerce.', experience:[{title:'Lead Designer',company:'FinTech SA',start:'2021-03',end:'',current:true},{title:'Product Designer',company:'Discovery',start:'2018-06',end:'2021-02'}], education:[{qualification:'BSc Multimedia Design',institution:'WITS University',year:'2017'}], availability:'Available Immediately', featured:true, visibleInVault:true, status:'approved' },
+    { id:'d2', fullName:'Sipho Dlamini', jobTitle:'Software Engineer', email:'sipho.d@email.com', province:'KwaZulu-Natal', experienceLevel:'Mid-Level (3–5 years)', skills:['React','Node.js','TypeScript','PostgreSQL','AWS'], summary:'Full-stack engineer passionate about building scalable web applications and clean APIs.', experience:[{title:'Full Stack Developer',company:'Takealot',start:'2022-01',end:'',current:true}], education:[{qualification:'BSc Computer Science',institution:'UKZN',year:'2020'}], availability:'Available Immediately', featured:true, visibleInVault:true, status:'approved' },
+    { id:'d3', fullName:'Lebo Mokoena', jobTitle:'Data Analyst', email:'lebo.m@email.com', province:'Western Cape', experienceLevel:'Mid-Level (3–5 years)', skills:['Python','SQL','Power BI','Tableau','Excel'], summary:'Data analyst turning complex datasets into clear business insights for retail and logistics sectors.', experience:[{title:'Data Analyst',company:'Checkers',start:'2021-07',end:'',current:true}], education:[{qualification:'BSc Statistics',institution:'UCT',year:'2020'}], availability:'Available In 2 Weeks', visibleInVault:true, status:'approved' },
+    { id:'d4', fullName:'Zanele Khumalo', jobTitle:'Project Manager', email:'zanele.k@email.com', province:'Gauteng', experienceLevel:'Senior (6–9 years)', skills:['Agile','Scrum','JIRA','Stakeholder Management','PMP'], summary:'Certified PMP with a track record of delivering complex projects on time and under budget.', experience:[{title:'Senior PM',company:'Vodacom',start:'2019-02',end:'',current:true},{title:'PM',company:'MTN',start:'2016-05',end:'2019-01'}], education:[{qualification:'BCom Management',institution:'University of Pretoria',year:'2015'}], availability:'Available In 1 Month', visibleInVault:true, status:'approved' },
+    { id:'d5', fullName:'Thabo Sithole', jobTitle:'Financial Analyst', email:'thabo.s@email.com', province:'Gauteng', experienceLevel:'Junior (0–2 years)', skills:['Financial Modelling','Excel','SAP','IFRS','Forecasting'], summary:'Ambitious finance graduate with strong modelling skills and experience at a Big 4 firm.', experience:[{title:'Junior Analyst',company:'Deloitte',start:'2023-01',end:'',current:true}], education:[{qualification:'BCom Accounting',institution:'University of Johannesburg',year:'2022'}], availability:'Available Immediately', visibleInVault:true, status:'approved' },
+    { id:'d6', fullName:'Nomsa Dube', jobTitle:'Marketing Manager', email:'nomsa.d@email.com', province:'Western Cape', experienceLevel:'Senior (6–9 years)', skills:['Brand Strategy','Google Ads','SEO','Social Media','HubSpot'], summary:'Creative marketer with deep experience in FMCG and tech brands across southern Africa.', experience:[{title:'Marketing Manager',company:'Woolworths',start:'2020-03',end:'',current:true}], education:[{qualification:'BCom Marketing',institution:'Stellenbosch University',year:'2016'}], availability:'Available In 2 Weeks', visibleInVault:true, status:'approved' },
+    { id:'d7', fullName:'Ravi Govender', jobTitle:'DevOps Engineer', email:'ravi.g@email.com', province:'KwaZulu-Natal', experienceLevel:'Mid-Level (3–5 years)', skills:['Docker','Kubernetes','CI/CD','Terraform','Azure'], summary:'DevOps specialist streamlining deployment pipelines and cloud infrastructure for fast-growing startups.', experience:[{title:'DevOps Engineer',company:'Synthesis Technology',start:'2021-06',end:'',current:true}], education:[{qualification:'BSc IT',institution:'DUT',year:'2020'}], availability:'Available Immediately', visibleInVault:true, status:'approved' },
+    { id:'d8', fullName:'Ayasha Pillay', jobTitle:'HR Business Partner', email:'ayasha.p@email.com', province:'Gauteng', experienceLevel:'Lead (10+ years)', skills:['Talent Acquisition','HRIS','Labour Law','L&D','Change Management'], summary:'Strategic HRBP with 11 years enabling high-performance cultures in banking and insurance.', experience:[{title:'HRBP',company:'Standard Bank',start:'2017-01',end:'',current:true},{title:'HR Manager',company:'Old Mutual',start:'2013-03',end:'2016-12'}], education:[{qualification:'BCom Industrial Psychology',institution:'UNISA',year:'2012'}], availability:'Not Currently Available', visibleInVault:true, status:'approved' },
+    { id:'d9', fullName:'Keanu van der Berg', jobTitle:'Graphic Designer', email:'keanu.v@email.com', province:'Western Cape', experienceLevel:'Junior (0–2 years)', skills:['Illustrator','Photoshop','Canva','Brand Identity','Motion Design'], summary:'Versatile visual designer creating compelling brand identities and marketing materials.', experience:[{title:'Junior Designer',company:'Ogilvy Cape Town',start:'2023-06',end:'',current:true}], education:[{qualification:'BA Visual Communication',institution:'CPUT',year:'2023'}], availability:'Available Immediately', visibleInVault:true, status:'approved' },
+  ];
+}
+
+// ── STATS ──
+function renderStats() {
+  const total     = allTalent.length;
+  const available = allTalent.filter(p => p.availability === 'Available Immediately' || p.availability === 'Available In 2 Weeks').length;
+  const provinces = new Set(allTalent.map(p => p.province).filter(Boolean)).size;
+  animateNum('heroTotal', total);
+  animateNum('heroAvailable', available);
+  animateNum('heroProvinces', provinces || 9);
+  document.getElementById('navCount').textContent = `${total} verified profiles`;
+}
+
+function animateNum(id, target) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let n = 0;
+  const step = Math.ceil(target / 22);
+  const t = setInterval(() => {
+    n = Math.min(n + step, target);
+    el.textContent = n;
+    if (n >= target) clearInterval(t);
+  }, 28);
+}
+
+// ── FEATURED ──
+function renderFeatured() {
+  const featured = allTalent.filter(p => p.featured);
+  if (!featured.length) return;
+  document.getElementById('featuredSection').style.display = 'block';
+  document.getElementById('featuredGrid').innerHTML = featured.map((p,i) => buildCard(p, i, true)).join('');
+}
+
+// ── GRID ──
+function renderGrid(profiles) {
+  const meta = `${profiles.length} result${profiles.length !== 1 ? 's' : ''}`;
+  document.getElementById('resultsMeta').textContent  = meta;
+  document.getElementById('resultsMeta2').textContent = meta;
+
+  if (!profiles.length) {
+    document.getElementById('vaultGrid').innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <div style="font-size:2.4rem;opacity:0.4">⊘</div>
+        <h3>No profiles match</h3>
+        <p>Adjust your filters or clear the search to see all talent.</p>
+      </div>`;
+    return;
+  }
+  document.getElementById('vaultGrid').innerHTML = profiles.map((p,i) => buildCard(p, i, false)).join('');
+}
+
+function buildCard(p, i, isFeatured) {
+  const initials = (p.fullName || '?').split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
+  const skills   = p.skills || [];
+  const shown    = skills.slice(0, 3);
+  const extra    = skills.length - shown.length;
+  const available = p.availability === 'Available Immediately' || p.availability === 'Available In 2 Weeks';
+  const levelShort = (p.experienceLevel || '').split('(')[0].trim() || '—';
+  const delay    = Math.min(i * 0.04, 0.32);
+
+  // Photo: check profile.photoUrl, profile.documents.photoUrl, and profile.documents?.photoUrl
+const photoUrl =
+  p.photoUrl ||
+  p.documents?.photoUrl ||
+  null;   const avatarHtml = photoUrl
+    ? `<img src="${photoUrl}" alt="${p.fullName || ''}" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${initials}'">`
+    : initials;
+console.log(p);
+console.log(p.documents);
+console.log(p.documents?.photoUrl);
+console.log("Photo URL:", photoUrl);
+  return `
+    <div class="tcard${isFeatured ? ' featured' : ''}" onclick="openDrawer('${p.id}')" style="animation-delay:${delay}s">
+      <div class="card-top">
+        <div class="card-avatar">${avatarHtml}</div>
+        <div class="card-identity">
+          <div class="card-job-title">${p.jobTitle || 'Professional'}</div>
+          <div class="card-person-name">${p.fullName || '—'}</div>
+          ${isFeatured ? `<span class="featured-badge">★ Featured</span>` : ''}
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-meta">
+          <div class="card-meta-row">
+            <span class="meta-icon">📍</span>
+            <span>${p.province || '—'} &nbsp;·&nbsp; ${levelShort}</span>
+          </div>
+        </div>
+
+        ${skills.length ? `
+          <div class="card-skills">
+            ${shown.map(s => `<span class="skill-pill">${s}</span>`).join('')}
+            ${extra > 0 ? `<span class="skill-more">+${extra} more</span>` : ''}
+          </div>
+        ` : ''}
+      </div>
+
+      <div class="card-footer">
+        <span class="card-status ${available ? 'status-available' : 'status-unavailable'}">
+          ${available ? 'Available' : 'Unavailable'}
+        </span>
+        <button class="card-action" onclick="event.stopPropagation();openDrawer('${p.id}')">View profile</button>
+      </div>
+    </div>
+  `;
+}
+
+// ── DRAWER ──
+window.openDrawer = function(id) {
+  const p = allTalent.find(x => x.id === id);
+  if (!p) return;
+
+  const initials  = (p.fullName || '?').split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
+  const available = p.availability === 'Available Immediately' || p.availability === 'Available In 2 Weeks';
+  const photoUrl  = p.photoUrl || p.documents?.photoUrl || null;
+  const avatarHtml = photoUrl
+    ? `<img src="${photoUrl}" alt="${p.fullName || ''}" onerror="this.style.display='none';this.parentElement.textContent='${initials}'">`
+    : initials;
+
+  document.getElementById('drawerContent').innerHTML = `
+    <div class="drawer-header">
+      <div class="drawer-avatar">${avatarHtml}</div>
+      <div class="drawer-identity">
+        <div class="drawer-job-title">${p.jobTitle || 'Professional'}</div>
+        <div class="drawer-person-name">${p.fullName || '—'}</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span class="card-status ${available ? 'status-available' : 'status-unavailable'}">${p.availability || 'Status unknown'}</span>
+          ${p.experienceLevel ? `<span style="font-size:0.63rem;padding:4px 9px;border-radius:3px;background:var(--warm-pale);color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">${p.experienceLevel.split('(')[0].trim()}</span>` : ''}
+        </div>
+      </div>
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    </div>
+
+    <div class="drawer-body">
+      <div class="drawer-contact">
+        <div class="dcontact-row">
+          <div class="dcontact-icon">✉</div>
+          <div>
+            <div class="dcontact-label">Email</div>
+            <div class="dcontact-val">${p.email || '—'}</div>
+          </div>
+        </div>
+        ${p.mobile ? `
+        <div class="dcontact-row">
+          <div class="dcontact-icon">☎</div>
+          <div>
+            <div class="dcontact-label">Mobile</div>
+            <div class="dcontact-val">${p.mobile}</div>
+          </div>
+        </div>` : ''}
+        <div class="dcontact-row">
+          <div class="dcontact-icon">📍</div>
+          <div>
+            <div class="dcontact-label">Province</div>
+            <div class="dcontact-val">${p.province || '—'}</div>
+          </div>
+        </div>
+      </div>
+
+      ${p.summary ? `
+        <div class="dsection-head">About</div>
+        <p style="font-size:0.82rem;line-height:1.68;color:var(--muted);margin-bottom:4px">${p.summary}</p>
+      ` : ''}
+
+      ${p.skills?.length ? `
+        <div class="dsection-head">Skills</div>
+        <div class="skills-wrap" style="margin-bottom:4px">
+          ${p.skills.map(s => `<span class="skill-d-pill">${s}</span>`).join('')}
+        </div>
+      ` : ''}
+
+      ${p.experience?.length ? `
+        <div class="dsection-head">Work Experience</div>
+        ${p.experience.map(e => `
+          <div class="exp-item">
+            <div class="exp-title">${e.title}</div>
+            <div class="exp-company">${e.company}</div>
+            ${(e.start || e.end || e.current) ? `<div class="exp-dates">${e.start ? fmtMonth(e.start) : ''} – ${e.current ? 'Present' : (e.end ? fmtMonth(e.end) : '')}</div>` : ''}
+            ${e.desc ? `<div style="font-size:0.74rem;color:var(--muted);margin-top:5px;line-height:1.5">${e.desc}</div>` : ''}
+          </div>
+        `).join('')}
+      ` : ''}
+
+      ${p.education?.length ? `
+        <div class="dsection-head">Education</div>
+        ${p.education.map(e => `
+          <div class="edu-item">
+            <div class="edu-qual">${e.qualification}</div>
+            <div class="edu-inst">${e.institution}${e.year ? ' · ' + e.year : ''}</div>
+          </div>
+        `).join('')}
+      ` : ''}
+
+      <div class="drawer-cta">
+        <button class="dcta-btn dcta-primary" onclick="contactTalent('${p.email || ''}','${(p.fullName || '').replace(/'/g,"\\'")}')">✉ Contact</button>
+        <button class="dcta-btn dcta-outline" onclick="saveTalent('${p.id}','${(p.fullName || '').replace(/'/g,"\\'")}')">♡ Save</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.getElementById('profileDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeDrawer = function() {
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.getElementById('profileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+// ── FILTERS ──
+window.applyFilters = function() {
+  const q        = document.getElementById('searchInput').value.toLowerCase().trim();
+  const province = document.getElementById('filterProvince').value;
+  const level    = document.getElementById('filterLevel').value;
+
+  filteredTalent = allTalent.filter(p => {
+    if (province && p.province !== province) return false;
+    if (level && !(p.experienceLevel || '').includes(level)) return false;
+    if (activeCat) {
+      const catMap = {
+        Technology: ['developer','engineer','devops','data','software','tech','it '],
+        Finance:    ['account','financ','analyst','audit','tax'],
+        Marketing:  ['market','brand','seo','social','content','digital'],
+        Design:     ['design','ux','ui','graphic','visual','creative'],
+        Operations: ['operations','project','logistics','supply','manager','hr','human']
+      };
+      const words = catMap[activeCat] || [];
+      const role  = (p.jobTitle || '').toLowerCase();
+      if (!words.some(w => role.includes(w))) return false;
+    }
+    if (q) {
+      const blob = [p.fullName, p.jobTitle, p.email, p.province, ...(p.skills || [])].join(' ').toLowerCase();
+      if (!blob.includes(q)) return false;
+    }
+    return true;
+  });
+
+  renderGrid(filteredTalent);
+};
+
+window.selectChip = function(el) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  activeCat = el.dataset.cat;
+  applyFilters();
+};
+
+// ── ACTIONS ──
+window.contactTalent = function(email, name) {
+  if (email) window.open(`mailto:${email}?subject=Launchp4d%20-%20Job%20Opportunity%20for%20${encodeURIComponent(name)}`);
+  showToast('Opening email client…', 'success');
+};
+
+window.saveTalent = function(id, name) {
+  showToast(`${name} saved to your shortlist`, 'success');
+};
+
+// ── HELPERS ──
+function fmtMonth(val) {
+  if (!val) return '';
+  const [y, m] = val.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[parseInt(m) - 1] || ''} ${y}`;
+}
+
+window.showToast = function(msg, type = 'info') {
+  const colors = { success: '#3a7a56', error: '#a84038', info: '#9C8B7E' };
+  document.getElementById('toastDot').style.background = colors[type] || colors.info;
+  document.getElementById('toastMsg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3200);
+};
+
+loadVault();
+</script>
+</body>
+</html>
